@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Job Status</title>
+</head>
+<body>
+
+<canvas id="myCanvas"  style="border:1px solid #d3d3d3;"></canvas>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+<script>
+    var count = 0;
+    document.getElementById('myCanvas').width = window.image_width;
+    document.getElementById('myCanvas').height = window.image_height;
+    var status = 1;
+
+    setInterval(getTaskInfo, 1000);
+
+    function getTaskInfo(){
+        $.ajax({
+            type: "POST",
+            url: "php/getSubfieldStatus.php",
+            data: {job_id:window.job_id},
+            dataType: "json",
+            success: function (data) {
+                if(status != 7){
+                    show_status(data, job_id);
+                }
+            },error: function (xhr, error) {
+                alert(xhr.responseText);
+            }
+        });
+    }
+
+    function show_status(data, job_id) {
+        //                   黑色      红色      绿色        深绿     浅紫色     深紫色     黄色       粉色
+        var colors = ["000000","#DC143C","#7CFC00","#7CCD7C","#7B68EE","#68228B","#FFFF00","#FF00FF"];
+        //alert("sss");
+        var c = document.getElementById("myCanvas");
+        var ctx = c.getContext("2d");
+        ctx.fillStyle=colors[0];
+        ctx.fillRect(0, 0,  window.image_width,window.image_height);
+        ctx.stroke();
+
+        //alert(data.length);
+        //alert("sss");
+        for (var i = 0; i < data.length; i++) {
+
+            ctx.fillStyle=colors[0];
+            ctx.fillRect(0, 0, window.image_width,window.image_height);
+            ctx.stroke();
+
+            var start_point_x = data[i].StartPoint_X/10;
+            var start_poiny_y = data[i].StartPoint_Y/10;
+            var width = data[i].Subfield_Width/100-10;
+            var height = data[i].Subfield_Height/100-10;
+            var status_id = data[i].Subfield_Status_ID;
+            status = status_id;
+            ctx.fillStyle=colors[status_id];
+            //alert(start_point_x+" "+start_poiny_y+" "+height+" "+width);
+            ctx.fillRect(start_point_x, start_poiny_y, width,height);
+            ctx.stroke();
+
+            if(status == 7){
+
+                $.ajax({
+                    type: "POST",
+                    url: "php/getResultImage.php",
+                    data: {jobID:job_id},
+                    dataType: "json",
+                    success: function (data) {
+
+                        var image = new Image();
+                        image.src = data.Result_URL;
+
+                        image.onload = function(){
+                            c.width = window.image_width;
+                            c.height = window.image_height;
+                            ctx.drawImage(image, 0, 0);
+                        };
+                    },error: function (xhr, error) {
+                        alert(xhr.responseText);
+                    }
+                });
+
+
+
+            }
+        }
+        /*
+        if((count%2)==0){
+            alert(count);
+            ctx.fillStyle="#FF0000";
+        }else{
+            alert(count);
+            ctx.fillStyle="#00FF00";
+        }
+        ctx.fillRect(360, 140, 458, 186);
+
+        ctx.stroke();
+        */
+
+    }
+        //var c = document.getElementById("myCanvas");
+        //var ctx = c.getContext("2d");
+       /* ctx.fillStyle= "#FF0000";
+        ctx.fillRect(300, 300, 150, 100);
+        ctx.stroke();
+        sleep(5);
+        ctx.fillStyle="#00FF00";
+        ctx.fillRect(451,300,50,50);
+        ctx.stroke();
+
+    }*/
+
+
+</script>
+
+</body>
+</html>

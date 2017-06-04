@@ -1,0 +1,16 @@
+#Created by :
+#Hongzhen Xie -773383
+#Gaojie Sun -741368
+#Software Development of COMP90055
+#Course Work Project
+
+
+#This is the Readme file of this web interface's php code.
+
+# The main process function is "process.php", this file us used for submitting job to remote platforms.
+
+#The result folder contains result image after analysing.
+# The key folder cotains the key file to nectar cloud
+#uploadfile folder contains the file uploaded by users.
+# Database connect folder contains the java file which matlab and octave to connect to remote mysql database.
+#slurm file folder: contains the slurm file created by this interface when user submit job to remote platforms.

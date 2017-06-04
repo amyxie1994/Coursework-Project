@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Result</title>
+</head>
+<body>
+
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/jquery.backstretch.min.js"></script>
+<script>
+    $( document ).ready(function() {
+    var image = new Image();
+    image.src = window.url;
+
+    image.onload = function(){
+        document.body.appendChild(image);
+    };
+    });
+
+</script>
+
+</body>
+</html>

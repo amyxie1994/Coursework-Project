@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Dashboard">
+    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+    <title>UAV Project Log in</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <!--external css-->
+    <link href="css/font-awesome.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style-responsive.css" rel="stylesheet">
+
+    <script src="http://hovertree.com/ziyuan/jquery/jquery-2.2.1.min.js"></script>
+    <script src="js/jquery.gDialog.js"></script>
+
+</head>
+
+<body>
+
+<script type="text/javascript" src="js/get_response.js"></script>
+
+<!-- **********************************************************************************************************************************************************
+MAIN CONTENT
+*********************************************************************************************************************************************************** -->
+
+<div id="login-page">
+    <div class="container">
+
+        <form class="form-login" id="register_form_id"  onsubmit="return register(); return false;">
+            <h2 class="form-login-heading">Register now</h2>
+            <div class="login-wrap">
+                <input type="text" id="username" class="form-control" placeholder="User ID" autofocus>
+                <br>
+                <input type="password" id="password" class="form-control" placeholder="Password">
+                <br>
+                <input type="password" id="re_password" class="form-control" placeholder="Repeat Password">
+                <br>
+                <input type="text" id="firstname" class="form-control" placeholder="first name">
+                <br>
+                <input type="text" id="lastname" class="form-control" placeholder="last name">
+
+                &nbsp;
+                <div>
+                    <p align="center" id="fail_info" style="color:red">  </p>
+                </div>
+
+                <button class="btn btn-theme btn-block" type="submit"><i class="fa fa-lock"></i> Register</button>
+
+                <div class="registration">
+                    Already have an account yet?<br/>
+                    <a class="" href="login.html">
+                        Log in
+                    </a>
+                </div>
+            </div>
+        </form>
+
+        <!-- Modal -->
+        <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p>Congratulation! Register Success!</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-theme" type="button" onclick="gotolgin()">Go to log in</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- modal -->
+
+    </div>
+</div>
+
+<!-- js placed at the end of the document so the pages load faster -->
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<!--BACKSTRETCH-->
+<!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
+<script type="text/javascript" src="js/jquery.backstretch.min.js"></script>
+<script>
+    $.backstretch("img/drone_login_bg.jpeg", {speed: 500});
+</script>
+
+
+</body>
+</html>
